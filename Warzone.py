@@ -16,4 +16,11 @@ headers = {
 
 response = requests.request("GET", url, headers=headers)
 
-print(response.text)
+all_player_info = response.json()
+
+def getKDA():
+    kda = all_player_info['br']['kdRatio']
+    rounded_kda = round(kda*1000)
+    return rounded_kda/1000
+
+print(gamertag + " has a kda of " + str(getKDA()))
